@@ -10,9 +10,7 @@ homepage = "https://github.com/jameone/btree_graph"
 repository = "https://github.com/jameone/btree_graph"
 keywords = ["graph"]
 categories = ["data-structures", "no-std"]
-readme = "crates-io.md"
-#include = ["build.rs", "src/**/*.rs", "crates-io.md", "README.md", "LICENSE-APACHE", "LICENSE-MIT"]
-#build = "build.rs"
+readme = "README.md"
 
 [[test]]
 name = "integration"
