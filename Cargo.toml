@@ -22,7 +22,7 @@ path = "tests/lib.rs"
 
 [features]
 
-default = ["serde", "serde_json", "serde_yaml", "serde_cbor", "fmt"]
+default = []
 
 yaml = ["serde", "serde_yaml"]
 json = ["serde", "serde_json"]
