@@ -3,7 +3,7 @@
 This library is a minimal implementation of a graph 
 (abstract data structure). 
 
-The primary goals of the implementation are to be 
+The primary goals of this implementation are to be 
 minimal and idiomatic to the Rust language. The `alloc`
 crate is the only dependency when compiled with default
 features. As one might assume, `alloc` is required for 
