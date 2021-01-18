@@ -34,7 +34,14 @@ fn main() {
     // Assert relationship now exists.
     assert!(graph.adjacdent(String::from("Jim"), String::from("Jane")));
 }
+```
 
+## Usage
+
+Add the following to your `Cargo.toml` file:
+```toml
+[dependencies]
+btree_graph = "0.1.0"
 ```
 
 ## API

@@ -19,9 +19,7 @@ path = "tests/lib.rs"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [features]
-
 default = []
-
 yaml = ["serde", "serde_yaml"]
 json = ["serde", "serde_json"]
 cbor = ["serde", "serde_cbor"]
