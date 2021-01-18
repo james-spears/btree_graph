@@ -1,4 +1,4 @@
-# Binary Tree graph (btree_graph)
+# Binary Tree Graph (btree_graph)
 
 This library is a minimal implementation of a graph 
 (abstract data structure). 
