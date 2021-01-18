@@ -8,7 +8,7 @@ license = "MIT OR Apache-2.0"
 description = "A generic graph data structure."
 homepage = "https://github.com/jameone/btree_graph"
 repository = "https://github.com/jameone/btree_graph"
-keywords = ["graph"]
+keywords = ["graph", "generic"]
 categories = ["data-structures", "no-std"]
 readme = "README.md"
 
