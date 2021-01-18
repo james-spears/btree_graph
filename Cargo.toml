@@ -1,0 +1,48 @@
+[package]
+name = "btree_graph"
+version = "0.1.0"
+authors = ["James Spears <james.w.spears@gmail.com>"]
+edition = "2018"
+autotests = false
+license = "MIT OR Apache-2.0"
+description = "A generic graph data structure."
+homepage = "https://github.com/jameone/btree_graph"
+repository = "https://github.com/jameone/btree_graph"
+keywords = ["graph"]
+categories = ["data-structures", "no-std"]
+readme = "crates-io.md"
+#include = ["build.rs", "src/**/*.rs", "crates-io.md", "README.md", "LICENSE-APACHE", "LICENSE-MIT"]
+#build = "build.rs"
+
+[[test]]
+name = "integration"
+path = "tests/lib.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+
+default = ["serde", "serde_json", "serde_yaml", "serde_cbor", "fmt"]
+
+yaml = ["serde", "serde_yaml"]
+json = ["serde", "serde_json"]
+cbor = ["serde", "serde_cbor"]
+fmt = []
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"], default-features = false, optional = true }
+serde_cbor = { version = "0.11", features = ["alloc"], default-features = false, optional = true }
+serde_json = { version = "1.0", features = ["alloc"], default-features = false, optional = true }
+serde_yaml = { version = "0.8", optional = true }
+
+[dev-dependencies]
+criterion = "0.3.3"
+
+[[bench]]
+name = "benchmark"
+path = "benches/lib.rs"
+harness = false
+
+[profile.release]
+# or "z"
+opt-level = "z"
