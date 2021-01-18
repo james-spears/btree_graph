@@ -11,19 +11,19 @@ mod unit_tests {
 
     #[test]
     fn test_graph() {
-        let graph: graph<usize, usize> = graph::new();
-        assert_eq!(graph, graph::new())
+        let graph: BTreeGraph<usize, usize> = BTreeGraph::new();
+        assert_eq!(graph, BTreeGraph::new())
     }
 
     #[test]
     fn new() {
         // Instantiate a graph using the new associated function.
-        let graph: graph<usize, usize> = graph::new();
+        let graph: BTreeGraph<usize, usize> = BTreeGraph::new();
         let vertices: BTreeMap<usize, BTreeSet<usize>> = BTreeMap::new();
         let edges: BTreeMap<usize, (usize, usize)> = BTreeMap::new();
 
         // Check graph struct is generated.
-        assert_eq!(graph, graph { vertices, edges })
+        assert_eq!(graph, BTreeGraph { vertices, edges })
 
         // Test passed
     }
@@ -31,11 +31,11 @@ mod unit_tests {
     #[test]
     fn default() {
         // Instantiate a graph using the implementation of default.
-        let graph: graph<usize, usize> = graph::new();
+        let graph: BTreeGraph<usize, usize> = BTreeGraph::new();
 
         // Check graph struct is equivalent to the struct generated
         // with the new associated function.
-        assert_eq!(graph, graph::new())
+        assert_eq!(graph, BTreeGraph::new())
 
         // Test passed
     }
@@ -43,7 +43,7 @@ mod unit_tests {
     #[test]
     fn vertices() {
         // Ensure there is a getter method for the vertices.
-        let graph: graph<usize, usize> = graph::new();
+        let graph: BTreeGraph<usize, usize> = BTreeGraph::new();
         let vertices: BTreeSet<&usize> = BTreeSet::new();
         assert_eq!(graph.vertices(), vertices)
 
@@ -53,7 +53,7 @@ mod unit_tests {
     #[test]
     fn edges() {
         // Ensure there is a getter method for the edge.
-        let graph: graph<usize, usize> = graph::new();
+        let graph: BTreeGraph<usize, usize> = BTreeGraph::new();
         let edges: BTreeSet<&usize> = BTreeSet::new();
         assert_eq!(graph.edges(), edges)
 
@@ -63,7 +63,7 @@ mod unit_tests {
     #[test]
     fn add_vertex() {
         // Add three nodes.
-        let mut graph: graph<usize, usize> = graph::new();
+        let mut graph: BTreeGraph<usize, usize> = BTreeGraph::new();
         graph.add_vertex(0);
         graph.add_vertex(1);
         graph.add_vertex(2);
@@ -84,7 +84,7 @@ mod unit_tests {
     #[test]
     fn add_edge() -> Result<(), Error> {
         // Add three nodes.
-        let mut graph: graph<usize, usize> = graph::new();
+        let mut graph: BTreeGraph<usize, usize> = BTreeGraph::new();
         graph.add_vertex(0);
         graph.add_vertex(1);
         graph.add_vertex(2);
@@ -138,7 +138,7 @@ mod unit_tests {
     #[test]
     fn remove_vertex() -> Result<(), Error> {
         // Add three nodes.
-        let mut graph: graph<usize, usize> = graph::new();
+        let mut graph: BTreeGraph<usize, usize> = BTreeGraph::new();
         graph.add_vertex(0);
         graph.add_vertex(1);
         graph.add_vertex(2);
@@ -167,7 +167,7 @@ mod unit_tests {
         assert_eq!(graph.edges(), exp_edges);
 
         // Add three nodes.
-        let mut graph: graph<usize, usize> = graph::new();
+        let mut graph: BTreeGraph<usize, usize> = BTreeGraph::new();
         graph.add_vertex(0);
         graph.add_vertex(1);
         graph.add_vertex(2);
@@ -205,7 +205,7 @@ mod unit_tests {
     #[test]
     fn remove_edge() -> Result<(), Error> {
         // Add three nodes.
-        let mut graph: graph<usize, usize> = graph::new();
+        let mut graph: BTreeGraph<usize, usize> = BTreeGraph::new();
         graph.add_vertex(0);
         graph.add_vertex(1);
         graph.add_vertex(2);
@@ -240,7 +240,7 @@ mod unit_tests {
     #[test]
     fn get_edge_value() -> Result<(), Error> {
         // Add three nodes.
-        let mut graph: graph<usize, usize> = graph::new();
+        let mut graph: BTreeGraph<usize, usize> = BTreeGraph::new();
         graph.add_vertex(0);
         graph.add_vertex(1);
         graph.add_vertex(2);
@@ -271,7 +271,7 @@ mod unit_tests {
     #[test]
     fn get_vertex_value() -> Result<(), Error> {
         // Add three nodes.
-        let mut graph: graph<usize, usize> = graph::new();
+        let mut graph: BTreeGraph<usize, usize> = BTreeGraph::new();
         graph.add_vertex(0);
         graph.add_vertex(1);
         graph.add_vertex(2);
@@ -300,7 +300,7 @@ mod unit_tests {
     #[test]
     fn adjacent() -> Result<(), Error> {
         // Add three nodes.
-        let mut graph: graph<usize, usize> = graph::new();
+        let mut graph: BTreeGraph<usize, usize> = BTreeGraph::new();
         graph.add_vertex(0);
         graph.add_vertex(1);
         graph.add_vertex(2);
@@ -335,7 +335,7 @@ mod unit_tests {
     #[test]
     fn connections() -> Result<(), Error> {
         // Add three nodes.
-        let mut graph: graph<usize, usize> = graph::new();
+        let mut graph: BTreeGraph<usize, usize> = BTreeGraph::new();
         graph.add_vertex(0);
         graph.add_vertex(1);
         graph.add_vertex(2);
@@ -375,7 +375,7 @@ mod unit_tests {
     #[cfg(all(feature = "serde", feature = "serde_json"))]
     fn test_try_from_json() -> Result<(), Error> {
         // Add three nodes.
-        let mut graph: graph<usize, usize> = graph::new();
+        let mut graph: BTreeGraph<usize, usize> = BTreeGraph::new();
         graph.add_vertex(0);
         graph.add_vertex(1);
         graph.add_vertex(2);
@@ -388,22 +388,22 @@ mod unit_tests {
         graph.add_edge(1, 2, 3)?;
         graph.add_edge(0, 2, 4)?;
 
-        let decoded_graph: graph<usize, usize> = graph::try_from_json(String::from("{\"vertices\":{\"0\":[2,4],\"1\":[3],\"2\":[]},\"edges\":{\"2\":[0,1],\"3\":[1,2],\"4\":[0,2]}}"))?;
+        let decoded_graph: BTreeGraph<usize, usize> = BTreeGraph::try_from_json(String::from("{\"vertices\":{\"0\":[2,4],\"1\":[3],\"2\":[]},\"edges\":{\"2\":[0,1],\"3\":[1,2],\"4\":[0,2]}}"))?;
         assert_eq!(decoded_graph, graph);
 
         // &String
-        let decoded_graph: graph<usize, usize> = graph::try_from_json(&String::from("{\"vertices\":{\"0\":[2,4],\"1\":[3],\"2\":[]},\"edges\":{\"2\":[0,1],\"3\":[1,2],\"4\":[0,2]}}"))?;
+        let decoded_graph: BTreeGraph<usize, usize> = BTreeGraph::try_from_json(&String::from("{\"vertices\":{\"0\":[2,4],\"1\":[3],\"2\":[]},\"edges\":{\"2\":[0,1],\"3\":[1,2],\"4\":[0,2]}}"))?;
         assert_eq!(decoded_graph, graph);
 
         // &Vec<u8>
-        let graph: graph<usize, usize> = graph::new();
+        let graph: BTreeGraph<usize, usize> = BTreeGraph::new();
         let bytes: Vec<u8> = graph.clone().try_into_json()?;
-        assert_eq!(graph::try_from_json(bytes)?, graph);
+        assert_eq!(BTreeGraph::try_from_json(bytes)?, graph);
 
         // &Vec<u8>
-        let graph: graph<usize, usize> = graph::new();
+        let graph: BTreeGraph<usize, usize> = BTreeGraph::new();
         let bytes: Vec<u8> = graph.clone().try_into_json()?;
-        assert_eq!(graph::try_from_json(&bytes)?, graph);
+        assert_eq!(BTreeGraph::try_from_json(&bytes)?, graph);
         Ok(())
     }
 
@@ -411,7 +411,7 @@ mod unit_tests {
     #[cfg(all(feature = "serde", feature = "serde_json"))]
     fn test_try_into_json() -> Result<(), Error> {
         // Add three nodes.
-        let mut graph: graph<usize, usize> = graph::new();
+        let mut graph: BTreeGraph<usize, usize> = BTreeGraph::new();
         graph.add_vertex(0);
         graph.add_vertex(1);
         graph.add_vertex(2);
@@ -428,7 +428,7 @@ mod unit_tests {
         assert_eq!(graph_string, String::from("{\"vertices\":{\"0\":[2,4],\"1\":[3],\"2\":[]},\"edges\":{\"2\":[0,1],\"3\":[1,2],\"4\":[0,2]}}"));
 
         // Bytes
-        let graph: graph<usize, usize> = graph::new();
+        let graph: BTreeGraph<usize, usize> = BTreeGraph::new();
         let bytes: Vec<u8> = graph.clone().try_into_json()?;
         assert_eq!(bytes.as_slice().len(), 26);
         Ok(())
@@ -438,7 +438,7 @@ mod unit_tests {
     #[cfg(all(feature = "serde", feature = "serde_cbor"))]
     fn test_try_into_cbor() -> Result<(), Error> {
         // Add three nodes.
-        let mut graph: graph<usize, usize> = graph::new();
+        let mut graph: BTreeGraph<usize, usize> = BTreeGraph::new();
         graph.add_vertex(0);
         graph.add_vertex(1);
         graph.add_vertex(2);
@@ -460,7 +460,7 @@ mod unit_tests {
     #[cfg(all(feature = "serde", feature = "serde_cbor"))]
     fn test_try_from_cbor() -> Result<(), Error> {
         // Add three nodes.
-        let mut graph: graph<usize, usize> = graph::new();
+        let mut graph: BTreeGraph<usize, usize> = BTreeGraph::new();
         graph.add_vertex(0);
         graph.add_vertex(1);
         graph.add_vertex(2);
@@ -475,12 +475,12 @@ mod unit_tests {
 
         // Vec<u8>
         let bytes: Vec<u8> = graph.clone().try_into_cbor()?;
-        assert_eq!(graph::try_from_cbor(bytes)?, graph);
+        assert_eq!(BTreeGraph::try_from_cbor(bytes)?, graph);
 
         // &Vec<u8>
-        let graph: graph<usize, usize> = graph::new();
+        let graph: BTreeGraph<usize, usize> = BTreeGraph::new();
         let bytes: Vec<u8> = graph.clone().try_into_cbor()?;
-        assert_eq!(graph::try_from_cbor(&bytes)?, graph);
+        assert_eq!(BTreeGraph::try_from_cbor(&bytes)?, graph);
         Ok(())
     }
 
@@ -488,7 +488,7 @@ mod unit_tests {
     #[cfg(all(feature = "serde", feature = "serde_yaml"))]
     fn test_try_from_yaml() -> Result<(), Error> {
         // Add three nodes.
-        let mut graph: graph<usize, usize> = graph::new();
+        let mut graph: BTreeGraph<usize, usize> = BTreeGraph::new();
         graph.add_vertex(0);
         graph.add_vertex(1);
         graph.add_vertex(2);
@@ -502,22 +502,22 @@ mod unit_tests {
         graph.add_edge(0, 2, 4)?;
 
         // String
-        let decoded_graph: graph<usize, usize> = graph::try_from_yaml(String::from("---\nvertices:\n  0:\n    - 2\n    - 4\n  1:\n    - 3\n  2: []\nedges:\n  2:\n    - 0\n    - 1\n  3:\n    - 1\n    - 2\n  4:\n    - 0\n    - 2"))?;
+        let decoded_graph: BTreeGraph<usize, usize> = BTreeGraph::try_from_yaml(String::from("---\nvertices:\n  0:\n    - 2\n    - 4\n  1:\n    - 3\n  2: []\nedges:\n  2:\n    - 0\n    - 1\n  3:\n    - 1\n    - 2\n  4:\n    - 0\n    - 2"))?;
         assert_eq!(decoded_graph, graph);
 
         // &String
-        let decoded_graph: graph<usize, usize> = graph::try_from_yaml(&String::from("---\nvertices:\n  0:\n    - 2\n    - 4\n  1:\n    - 3\n  2: []\nedges:\n  2:\n    - 0\n    - 1\n  3:\n    - 1\n    - 2\n  4:\n    - 0\n    - 2"))?;
+        let decoded_graph: BTreeGraph<usize, usize> = BTreeGraph::try_from_yaml(&String::from("---\nvertices:\n  0:\n    - 2\n    - 4\n  1:\n    - 3\n  2: []\nedges:\n  2:\n    - 0\n    - 1\n  3:\n    - 1\n    - 2\n  4:\n    - 0\n    - 2"))?;
         assert_eq!(decoded_graph, graph);
 
         // &Vec<u8>
-        let graph: graph<usize, usize> = graph::new();
+        let graph: BTreeGraph<usize, usize> = BTreeGraph::new();
         let bytes: Vec<u8> = graph.clone().try_into_yaml()?;
-        assert_eq!(graph::try_from_yaml(bytes)?, graph);
+        assert_eq!(BTreeGraph::try_from_yaml(bytes)?, graph);
 
         // &Vec<u8>
-        let graph: graph<usize, usize> = graph::new();
+        let graph: BTreeGraph<usize, usize> = BTreeGraph::new();
         let bytes: Vec<u8> = graph.clone().try_into_yaml()?;
-        assert_eq!(graph::try_from_yaml(&bytes)?, graph);
+        assert_eq!(BTreeGraph::try_from_yaml(&bytes)?, graph);
         Ok(())
     }
 
@@ -525,7 +525,7 @@ mod unit_tests {
     #[cfg(all(feature = "serde", feature = "serde_yaml"))]
     fn test_try_into_yaml() -> Result<(), Error> {
         // Add three nodes.
-        let mut graph: graph<usize, usize> = graph::new();
+        let mut graph: BTreeGraph<usize, usize> = BTreeGraph::new();
         graph.add_vertex(0);
         graph.add_vertex(1);
         graph.add_vertex(2);
@@ -543,7 +543,7 @@ mod unit_tests {
         assert_eq!(graph_string, String::from("---\nvertices:\n  0:\n    - 2\n    - 4\n  1:\n    - 3\n  2: []\nedges:\n  2:\n    - 0\n    - 1\n  3:\n    - 1\n    - 2\n  4:\n    - 0\n    - 2"));
 
         // Bytes
-        let graph: graph<usize, usize> = graph::new();
+        let graph: BTreeGraph<usize, usize> = BTreeGraph::new();
         let bytes: Vec<u8> = graph.clone().try_into_yaml()?;
         assert_eq!(bytes.as_slice().len(), 26);
         Ok(())

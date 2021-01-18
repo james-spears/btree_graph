@@ -26,7 +26,7 @@ mod test;
 
 #[derive(PartialEq, Eq, Clone, Debug)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-pub struct graph<V, E>
+pub struct BTreeGraph<V, E>
 where
     V: Ord,
     E: Ord,
@@ -35,7 +35,7 @@ where
     edges: BTreeMap<E, (V, V)>,
 }
 
-impl<V, E> graph<V, E>
+impl<V, E> BTreeGraph<V, E>
 where
     V: Ord,
     E: Ord,
@@ -43,21 +43,11 @@ where
     pub fn new() -> Self {
         let vertices: BTreeMap<V, BTreeSet<E>> = BTreeMap::new();
         let edges: BTreeMap<E, (V, V)> = BTreeMap::new();
-        graph { vertices, edges }
+        BTreeGraph { vertices, edges }
     }
 }
 
-// impl<V, E> Default for graph<V, E>
-// where
-//     V: Ord,
-//     E: Ord,
-// {
-//     fn default() -> Self {
-//         Self::new()
-//     }
-// }
-
-impl<V, E> Vertices<V> for graph<V, E>
+impl<V, E> Vertices<V> for BTreeGraph<V, E>
 where
     V: Ord,
     E: Ord,
@@ -67,7 +57,7 @@ where
     }
 }
 
-impl<V, E> Edges<E> for graph<V, E>
+impl<V, E> Edges<E> for BTreeGraph<V, E>
 where
     V: Ord,
     E: Ord,
@@ -77,7 +67,7 @@ where
     }
 }
 
-impl<V, E> AddVertex<V, E> for graph<V, E>
+impl<V, E> AddVertex<V, E> for BTreeGraph<V, E>
 where
     V: Ord,
     E: Ord,
@@ -88,7 +78,7 @@ where
 }
 
 /// When you add an edge, you should make sure that the x, and y vertices exist.
-impl<V, E> AddEdge<V, E> for graph<V, E>
+impl<V, E> AddEdge<V, E> for BTreeGraph<V, E>
 where
     V: Ord + Clone,
     E: Ord + Clone,
@@ -107,7 +97,7 @@ where
     }
 }
 
-impl<V, E> GetEdgeValue<V, E> for graph<V, E>
+impl<V, E> GetEdgeValue<V, E> for BTreeGraph<V, E>
 where
     V: Ord,
     E: Ord,
@@ -117,7 +107,7 @@ where
     }
 }
 
-impl<V, E> GetVertexValue<V, E> for graph<V, E>
+impl<V, E> GetVertexValue<V, E> for BTreeGraph<V, E>
 where
     V: Ord,
     E: Ord,
@@ -129,7 +119,7 @@ where
 
 /// When an edge is removed, you should find the incident vertex and ensure the edge
 /// is removed from the vertex's adjacency list.
-impl<V, E> RemoveEdge<V, E> for graph<V, E>
+impl<V, E> RemoveEdge<V, E> for BTreeGraph<V, E>
 where
     V: Ord + Clone,
     E: Ord + Clone,
@@ -148,7 +138,7 @@ where
 }
 
 /// When you remove a vertex, you should ensure there are no dangling edges.
-impl<V, E> RemoveVertex<V, E> for graph<V, E>
+impl<V, E> RemoveVertex<V, E> for BTreeGraph<V, E>
 where
     V: Ord + Clone,
     E: Ord + Clone,
@@ -174,7 +164,7 @@ where
     }
 }
 
-impl<V, E> Adjacent<V> for graph<V, E>
+impl<V, E> Adjacent<V> for BTreeGraph<V, E>
 where
     V: Ord,
     E: Ord,
@@ -198,7 +188,7 @@ where
     }
 }
 
-impl<V, E> Connections<V> for graph<V, E>
+impl<V, E> Connections<V> for BTreeGraph<V, E>
 where
     V: Ord,
     E: Ord,
@@ -216,61 +206,61 @@ where
 }
 
 #[cfg(feature = "serde_yaml")]
-impl<V, E> TryFromYaml<graph<V, E>> for String
+impl<V, E> TryFromYaml<BTreeGraph<V, E>> for String
 where
     V: Serialize + DeserializeOwned + Ord,
     E: Serialize + DeserializeOwned + Ord,
 {
     type Error = Error;
-    fn try_from_yaml(e: graph<V, E>) -> Result<String, Self::Error> {
+    fn try_from_yaml(e: BTreeGraph<V, E>) -> Result<String, Self::Error> {
         Ok(serde_yaml::to_string(&e)?)
     }
 }
 
 #[cfg(feature = "serde_yaml")]
-impl<V, E> TryFromYaml<graph<V, E>> for Vec<u8>
+impl<V, E> TryFromYaml<BTreeGraph<V, E>> for Vec<u8>
 where
     V: Serialize + DeserializeOwned + Ord,
     E: Serialize + DeserializeOwned + Ord,
 {
     type Error = Error;
-    fn try_from_yaml(e: graph<V, E>) -> Result<Vec<u8>, Self::Error> {
+    fn try_from_yaml(e: BTreeGraph<V, E>) -> Result<Vec<u8>, Self::Error> {
         Ok(serde_yaml::to_vec(&e)?)
     }
 }
 
 #[cfg(feature = "serde_cbor")]
-impl<'a, V, E> TryFromCbor<graph<V, E>> for Vec<u8>
+impl<'a, V, E> TryFromCbor<BTreeGraph<V, E>> for Vec<u8>
 where
     V: Serialize + Deserialize<'a> + Ord,
     E: Serialize + Deserialize<'a> + Ord,
 {
     type Error = Error;
-    fn try_from_cbor(e: graph<V, E>) -> Result<Vec<u8>, Self::Error> {
+    fn try_from_cbor(e: BTreeGraph<V, E>) -> Result<Vec<u8>, Self::Error> {
         Ok(serde_cbor::to_vec(&e)?)
     }
 }
 
 #[cfg(feature = "serde_json")]
-impl<'a, V, E> TryFromJson<graph<V, E>> for String
+impl<'a, V, E> TryFromJson<BTreeGraph<V, E>> for String
 where
     V: Serialize + Deserialize<'a> + Ord,
     E: Serialize + Deserialize<'a> + Ord,
 {
     type Error = Error;
-    fn try_from_json(e: graph<V, E>) -> Result<String, Self::Error> {
+    fn try_from_json(e: BTreeGraph<V, E>) -> Result<String, Self::Error> {
         Ok(serde_json::to_string(&e)?)
     }
 }
 
 #[cfg(feature = "serde_json")]
-impl<'a, V, E> TryFromJson<graph<V, E>> for Vec<u8>
+impl<'a, V, E> TryFromJson<BTreeGraph<V, E>> for Vec<u8>
 where
     V: Serialize + Deserialize<'a> + Ord,
     E: Serialize + Deserialize<'a> + Ord,
 {
     type Error = Error;
-    fn try_from_json(e: graph<V, E>) -> Result<Vec<u8>, Self::Error> {
+    fn try_from_json(e: BTreeGraph<V, E>) -> Result<Vec<u8>, Self::Error> {
         Ok(serde_json::to_vec(&e)?)
     }
 }
