@@ -1,6 +1,11 @@
 # Binary Tree Graph (btree_graph)
 
 [![Build Status](https://travis-ci.com/jameone/btree_graph.svg?branch=main)](https://travis-ci.com/jameone/btree_graph)
+[![Code Version](https://img.shields.io/crates/v/btree_graph)](https://img.shields.io/crates/v/btree_graph)
+[![Docs badge]][docs.rs]
+
+[Docs badge]: https://img.shields.io/badge/docs.rs-rustdoc-green
+[docs.rs]: https://docs.rs/btree_graph/
 
 This library is a minimal implementation of a graph 
 (abstract data structure) by way of two binary tree maps
