@@ -1,9 +1,9 @@
-use btree_graph::error::Error;
-use btree_graph::graph::*;
+use btree_graph::*;
 use criterion::{black_box, Criterion};
+use btree_graph::error::Error;
 
-fn setup() -> Result<graph<String, usize>, Error> {
-    let mut graph: graph<String, usize> = graph::new();
+fn setup() -> Result<BTreeGraph<String, usize>, Error> {
+    let mut graph: BTreeGraph<String, usize> = BTreeGraph::new();
     graph.add_vertex(String::from("0"));
     graph.add_vertex(String::from("1"));
     graph.add_vertex(String::from("2"));

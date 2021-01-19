@@ -15,34 +15,35 @@ an adjacency list.
 The primary goals of this implementation are to be 
 minimal and idiomatic to the Rust language. The `alloc`
 crate is the only dependency when compiled with default
-features. As one might assume, `alloc` is required for 
-reason the implementation relies on `BTreeMap` (and the
-`BTreeSet` wrapper).
+features and is not optional. As one might assume, `alloc`
+is required for reason the implementation relies on `BTreeMap`
+(and the `BTreeSet` wrapper).
 
 Secondary concerns include serialization,
 deserialization, and encoding. For these the `serde`,
 `serde_json`, `serde_yaml`, and `serde_cbor` crates
 are included and available under the feature flags:
-`serde`, `json`, `yaml`, and `cbor`. Please see the 
-encoding module's [API](./src/encoding/api.rs) for
-the optional trait definitions. *Note: using `json`,
-`yaml`, or `cbor` features will automatically require
-a `serde` dependency.*
+`serde`, `serde_json`, `serde_yaml`, and `serde_cbor`.
+Please see the encoding module's [API](./src/encoding/api.rs)
+for the available optional trait definitions. *Note: using
+`serde_json`, `serde_yaml`, or `serde_cbor` features will
+require inclusion of the `serde` feature, else the library
+will not compile.*
 
 ## Example
 ```rust
-use btree_graph::BTreeGraph;
+use crate::BTreeGraph;
 
 fn main() {
     let mut graph: BTreeGraph<String, String> = BTreeGraph::new();
     // Add nodes.
-    graph.add_vertex(String::from("Jim"));
+    graph.add_vertex(String::from("Tarzan"));
     graph.add_vertex(String::from("Jane"));
     // Add a relationship.
-    graph.add_edge(String::from("Jim"), String::from("Jane"), String::from("Loves"));
+    graph.add_edge(String::from("Tarzan"), String::from("Jane"), String::from("Loves"));
     
     // Assert relationship now exists.
-    assert!(graph.adjacdent(String::from("Jim"), String::from("Jane")));
+    assert!(graph.adjacdent(String::from("Tarzan"), String::from("Jane")));
 }
 ```
 
@@ -56,7 +57,7 @@ btree_graph = "0.1.2"
 
 ## API
 
-Please see the [API](./src/graph/api.rs) for a full list of
+Please see the [API](src/api.rs) for a full list of
 available methods.
 
 ## License

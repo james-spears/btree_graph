@@ -64,7 +64,7 @@ where
 {
     type Error = Error;
     fn try_from_json(e: &'a String) -> Result<T, Self::Error> {
-        Ok(serde_json::from_str(e)?)
+        Ok(serde_json::from_str(e.as_str())?)
     }
 }
 
@@ -99,7 +99,7 @@ where
 {
     type Error = Error;
     fn try_from_json(b: &'a Vec<u8>) -> Result<Self, Self::Error> {
-        Ok(serde_json::from_slice(b)?)
+        Ok(serde_json::from_slice(b.as_slice())?)
     }
 }
 
@@ -136,7 +136,7 @@ where
 {
     type Error = Error;
     fn try_from_cbor(b: &'a Vec<u8>) -> Result<Self, Self::Error> {
-        Ok(serde_cbor::from_slice(b)?)
+        Ok(serde_cbor::from_slice(b.as_slice())?)
     }
 }
 
@@ -204,7 +204,7 @@ where
 {
     type Error = Error;
     fn try_from_yaml(b: &Vec<u8>) -> Result<T, Self::Error> {
-        Ok(serde_yaml::from_slice(b)?)
+        Ok(serde_yaml::from_slice(b.as_slice())?)
     }
 }
 

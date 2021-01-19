@@ -20,9 +20,6 @@ path = "tests/lib.rs"
 
 [features]
 default = []
-yaml = ["serde", "serde_yaml"]
-json = ["serde", "serde_json"]
-cbor = ["serde", "serde_cbor"]
 fmt = []
 
 [dependencies]
