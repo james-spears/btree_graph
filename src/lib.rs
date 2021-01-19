@@ -1,7 +1,6 @@
 #![no_std]
 extern crate alloc;
-mod error;
-pub use error::Error;
+pub mod error;
 mod graph;
 pub use graph::*;
 #[cfg(any(feature = "serde_cbor", feature = "serde_json", feature = "serde_yaml"))]
