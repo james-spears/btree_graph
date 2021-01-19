@@ -19,7 +19,7 @@ path = "tests/lib.rs"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [features]
-default = []
+default = ["serde", "serde_json", "serde_cbor", "serde_yaml", "fmt"]
 fmt = []
 
 [dependencies]
