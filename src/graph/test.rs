@@ -16,7 +16,7 @@ mod unit_tests {
     }
 
     #[test]
-    fn new() {
+    fn definition() {
         // Instantiate a graph using the new associated function.
         let graph: BTreeGraph<usize, usize> = BTreeGraph::new();
         let vertices: BTreeMap<usize, BTreeSet<usize>> = BTreeMap::new();
@@ -29,13 +29,13 @@ mod unit_tests {
     }
 
     #[test]
-    fn default() {
+    fn new_and_default() {
         // Instantiate a graph using the implementation of default.
         let graph: BTreeGraph<usize, usize> = BTreeGraph::new();
 
         // Check graph struct is equivalent to the struct generated
         // with the new associated function.
-        assert_eq!(graph, BTreeGraph::new())
+        assert_eq!(graph, BTreeGraph::default())
 
         // Test passed
     }

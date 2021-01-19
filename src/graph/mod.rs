@@ -1,5 +1,3 @@
-// use core::default::Default;
-
 #[cfg(any(feature = "serde_json", feature = "serde_yaml"))]
 use alloc::string::String;
 #[cfg(any(feature = "serde_json", feature = "serde_yaml", feature = "serde_cbor"))]
@@ -19,6 +17,7 @@ pub use crate::encoding::TryFromYaml;
 use crate::error::Error;
 
 use alloc::collections::{BTreeMap, BTreeSet};
+use core::default::Default;
 
 mod api;
 pub use api::*;
@@ -44,6 +43,16 @@ where
         let vertices: BTreeMap<V, BTreeSet<E>> = BTreeMap::new();
         let edges: BTreeMap<E, (V, V)> = BTreeMap::new();
         BTreeGraph { vertices, edges }
+    }
+}
+
+impl<V, E> Default for BTreeGraph<V, E>
+where
+    V: Ord,
+    E: Ord,
+{
+    fn default() -> Self {
+        Self::new()
     }
 }
 
