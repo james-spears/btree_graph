@@ -11,7 +11,9 @@ arch:
 os: linux  # different CPU architectures are only supported on Linux
 jobs:
   allow_failures:
-    - rust: nightly
+    - rust:
+      - nightly
+      - beta
   fast_finish: true
 script:
   - cargo build --verbose --workspace
