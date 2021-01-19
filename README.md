@@ -15,9 +15,10 @@ deserialization, and encoding. For these the `serde`,
 `serde_json`, `serde_yaml`, and `serde_cbor` crates
 are included and available under the feature flags:
 `serde`, `json`, `yaml`, and `cbor`. Please see the 
-encoding module for notes on the available APIs.
-*Note: using `json`, `yaml`, or `cbor` features will
-automatically require a `serde` dependency.*
+encoding module's [API](./src/encoding/api.rs) for
+the optional trait definitions. *Note: using `json`,
+`yaml`, or `cbor` features will automatically require
+a `serde` dependency.*
 
 ## Example
 ```rust
