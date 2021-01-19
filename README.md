@@ -1,7 +1,11 @@
 # Binary Tree Graph (btree_graph)
 
+[![Build Status](https://travis-ci.com/jameone/btree_graph.svg?branch=main)](https://travis-ci.com/jameone/btree_graph)
+
 This library is a minimal implementation of a graph 
-(abstract data structure). 
+(abstract data structure) by way of two binary tree maps
+(`BTreeMap`). This implementation is often referred to as
+an adjacency list.
 
 The primary goals of this implementation are to be 
 minimal and idiomatic to the Rust language. The `alloc`
