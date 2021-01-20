@@ -2,8 +2,7 @@ pub mod api;
 mod test;
 
 
-use alloc::collections::btree_set::BTreeSet;
-use alloc::collections::btree_map::BTreeMap;
+use alloc::collections::{BTreeSet, BTreeMap};
 #[cfg(any(feature = "serde_json", feature = "serde_yaml"))]
 use alloc::string::String;
 #[cfg(any(feature = "serde_json", feature = "serde_yaml", feature = "serde_cbor"))]
