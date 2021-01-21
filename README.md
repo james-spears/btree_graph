@@ -24,7 +24,7 @@ deserialization, and encoding. For these the `serde`,
 `serde_json`, `serde_yaml`, and `serde_cbor` crates
 are included and available under the feature flags:
 `serde`, `serde_json`, `serde_yaml`, and `serde_cbor`.
-Please see the encoding module's [API](./src/encoding/api.rs)
+Please see the encoding module's [API](../try_encoding_from/src/encoding/api.rs)
 for the available optional trait definitions. *Note: using
 `serde_json`, `serde_yaml`, or `serde_cbor` features will
 require inclusion of the `serde` feature, else the library
@@ -32,7 +32,7 @@ will not compile.*
 
 ## Example
 ```rust
-use crate::BTreeGraph;
+use btree_graph::BTreeGraph;
 
 fn main() {
     let mut graph: BTreeGraph<String, String> = BTreeGraph::new();
@@ -57,7 +57,7 @@ btree_graph = "0.1.3"
 
 ## API
 
-Please see the [API](src/api.rs) for a full list of
+Please see the [API](src/graph/api.rs) for a full list of
 available methods.
 
 ## License

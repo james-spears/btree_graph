@@ -40,10 +40,12 @@ where
 ///
 /// ```
 /// use btree_graph::{BTreeGraph, AddVertex, Vertices};
+/// use std::collections::BTreeSet;
 /// let mut graph: BTreeGraph<String, usize> = BTreeGraph::new();
-/// graph.add_vertex(String::from("origin"));
+/// let old_vertex_value: Option<BTreeSet<usize>> = graph.add_vertex(String::from("origin"));
 ///
-/// assert_eq!(graph.vertices().len(), 1);
+/// assert!(old_vertex_value.is_none());
+/// assert_eq!(graph.vertices().len(), 1)
 /// ```
 pub trait AddVertex<V, E>
 where
@@ -61,9 +63,10 @@ where
 /// let mut graph: BTreeGraph<String, usize> = BTreeGraph::new();
 /// graph.add_vertex(String::from("origin"));
 /// graph.add_vertex(String::from("destination"));
-/// graph.add_edge(String::from("origin"), String::from("destination"), 10);
+/// let old_edge_value: Option<(String, String)> = graph.add_edge(String::from("origin"), String::from("destination"), 10).unwrap();
 ///
-/// assert_eq!(graph.edges().len(), 1);
+/// assert!(old_edge_value.is_none());
+/// assert_eq!(graph.edges().len(), 1)
 /// ```
 pub trait AddEdge<V, E> {
     type Error;
@@ -112,7 +115,8 @@ where
     fn get_vertex_value(&self, x: V) -> Option<&BTreeSet<E>>;
 }
 
-/// `RemoveEdge` removes the edge from the vertex x to the vertex y, if it is there.
+/// `RemoveEdge` removes the edge from the vertex x to the vertex y, if it is there. If the
+/// edge does not exist, an error will be raised.
 ///
 /// # Example
 ///
@@ -125,8 +129,7 @@ where
 ///
 /// assert_eq!(graph.edges().len(), 1);
 ///
-/// let removed_edge: (String, String) =  graph.remove_edge(10).unwrap();
-/// assert_eq!(removed_edge, (String::from("origin"), String::from("destination")));
+/// graph.remove_edge(10);
 ///
 /// assert_eq!(graph.edges().len(), 0);
 ///
@@ -135,10 +138,12 @@ where
 /// assert_eq!(graph.get_vertex_value(String::from("origin")).unwrap().len(), 0);
 /// ```
 pub trait RemoveEdge<V, E> {
-    fn remove_edge(&mut self, x: E) -> Option<(V, V)>;
+    type Error;
+    fn remove_edge(&mut self, x: E) -> Result<(), Self::Error>;
 }
 
-/// `RemoveVertex` removes the vertex x, if it is there.
+/// `RemoveVertex` removes the vertex x, if it is there. If the vertex does not exist,
+/// an error is raised.
 ///
 /// # Example
 ///
@@ -152,7 +157,7 @@ pub trait RemoveEdge<V, E> {
 /// graph.add_edge(String::from("origin"), String::from("destination"), 10);
 ///
 ///
-/// let removed_vertex: BTreeSet<usize> =  graph.remove_vertex(String::from("destination")).unwrap();
+/// graph.remove_vertex(String::from("destination"));
 /// assert_eq!(graph.vertices().len(), 1);
 ///
 /// // Note: removing a vertex will also cascade delete any incident edges, which will then
@@ -164,7 +169,8 @@ pub trait RemoveVertex<V, E>
 where
     E: Ord,
 {
-    fn remove_vertex(&mut self, x: V) -> Option<BTreeSet<E>>;
+    type Error;
+    fn remove_vertex(&mut self, x: V) -> Result<(), Self::Error>;
 }
 
 /// `Adjacent` tests whether there is an edge from the vertex x to the vertex y.

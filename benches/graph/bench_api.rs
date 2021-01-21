@@ -1,6 +1,6 @@
+use btree_graph::error::Error;
 use btree_graph::*;
 use criterion::{black_box, Criterion};
-use btree_graph::error::Error;
 
 fn setup() -> Result<BTreeGraph<String, usize>, Error> {
     let mut graph: BTreeGraph<String, usize> = BTreeGraph::new();

@@ -1,7 +1,9 @@
 #[cfg(test)]
 mod unit_tests {
     #[cfg(any(feature = "serde_json", feature = "serde_yaml", feature = "serde_cbor"))]
-    use crate::error::{EncodingError, Error};
+    use crate::error::Error;
+    #[cfg(any(feature = "serde_json", feature = "serde_yaml", feature = "serde_cbor"))]
+    use try_encoding_from::Error as EncodingError;
 
     #[test]
     #[cfg(all(feature = "serde", feature = "serde_cbor"))]
