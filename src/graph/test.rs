@@ -193,6 +193,8 @@ mod unit_tests {
         let exp_edges: BTreeSet<&usize> = BTreeSet::new();
         assert_eq!(graph.edges(), exp_edges);
 
+        // Remove vertex which does not exist.
+        assert_eq!(graph.remove_vertex(3).unwrap_err(), Error::VertexDoesNotExist);
         Ok(())
 
         // Test passed.
@@ -228,6 +230,9 @@ mod unit_tests {
         // exp_edge.from = 1;
         // exp_edge.to = 2;
         assert_eq!(graph.get_edge_value(3).unwrap(), &(1, 2));
+
+        // Remove vertex which does not exist.
+        assert_eq!(graph.remove_edge(1).unwrap_err(), Error::EdgeDoesNotExist);
 
         // Test passed.
         Ok(())
