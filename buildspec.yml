@@ -20,7 +20,7 @@ phases:
       - cargo package --all-features
       - echo Attempting to publish to crates.io
       - echo This fowllowing command will never fail please read output
-      - cargo publish || true && echo Publish to crates.io FAILED
+      - (cargo publish && echo Publish to crates.io SUCCESS) || (true && echo Publish to crates.io FAILED)
 artifacts:
   files:
     - cov/**/*
