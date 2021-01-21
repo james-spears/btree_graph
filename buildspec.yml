@@ -15,11 +15,12 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
-      - echo Packaging library.
+      - echo Packaging library
       - cargo login $CARGO_LOGIN_TOKEN
       - cargo package --all-features
-      - echo Attempting to publish to crates.io (this command will never fail, please read following output).
-      - cargo publish || true && echo "Published to crates.io; FAILED"
+      - echo Attempting to publish to crates.io
+      - echo This command will never fail please read following output
+      - cargo publish || true && echo Publish to crates.io FAILED
 artifacts:
   files:
     - cov/**/*
