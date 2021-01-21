@@ -19,7 +19,7 @@ phases:
       - cargo login $CARGO_LOGIN_TOKEN
       - cargo package --all-features
       - echo Attempting to publish to crates.io (this command will never fail, please read following output).
-      - cargo publish || true && "Published to crates.io; FAILED"
+      - cargo publish || true && echo "Published to crates.io; FAILED"
 artifacts:
   files:
     - cov/**/*
