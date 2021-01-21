@@ -17,5 +17,5 @@ phases:
       - echo Build completed on `date`
 artifacts:
   files:
-    - coverage/**/*
+    - cov/**/*
   base-directory: $CODEBUILD_SRC_DIR/target
