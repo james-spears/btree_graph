@@ -5,6 +5,7 @@ phases:
     commands:
       - cd $CODEBUILD_SRC_DIR
       - rustup update stable
+      - rustup default stable
   build:
     commands:
       - echo Build started on `date`
