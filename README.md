@@ -19,17 +19,6 @@ features and is not optional. As one might assume, `alloc`
 is required for reason the implementation relies on `BTreeMap`
 (and the `BTreeSet` wrapper).
 
-Secondary concerns include serialization,
-deserialization, and encoding. For these the `serde`,
-`serde_json`, `serde_yaml`, and `serde_cbor` crates
-are included and available under the feature flags:
-`serde`, `serde_json`, `serde_yaml`, and `serde_cbor`.
-Please see the encoding module's [API](../try_encoding_from/src/encoding/api.rs)
-for the available optional trait definitions. *Note: using
-`serde_json`, `serde_yaml`, or `serde_cbor` features will
-require inclusion of the `serde` feature, else the library
-will not compile.*
-
 ## Example
 ```rust
 use btree_graph::BTreeGraph;
