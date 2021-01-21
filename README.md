@@ -1,6 +1,6 @@
 # Binary Tree Graph (btree_graph)
 
-[![Build Status](https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoicTFLVlFuVGxzbTAxb0VickliMHlZUVlrVkZLbnVnVnZlcjQvb0dzWGNGdUEwdFFBbC9FdDZmMVhEcGZkbTFUeUs3YVNsOWpvVWlDdkdmdlVzazBmbkNZPSIsIml2UGFyYW1ldGVyU3BlYyI6IkpSdEZ5WEtLZmtrbUs1MDQiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)](https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoicTFLVlFuVGxzbTAxb0VickliMHlZUVlrVkZLbnVnVnZlcjQvb0dzWGNGdUEwdFFBbC9FdDZmMVhEcGZkbTFUeUs3YVNsOWpvVWlDdkdmdlVzazBmbkNZPSIsIml2UGFyYW1ldGVyU3BlYyI6IkpSdEZ5WEtLZmtrbUs1MDQiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
+[![Build Status](https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoicTFLVlFuVGxzbTAxb0VickliMHlZUVlrVkZLbnVnVnZlcjQvb0dzWGNGdUEwdFFBbC9FdDZmMVhEcGZkbTFUeUs3YVNsOWpvVWlDdkdmdlVzazBmbkNZPSIsIml2UGFyYW1ldGVyU3BlYyI6IkpSdEZ5WEtLZmtrbUs1MDQiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=main)](https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoicTFLVlFuVGxzbTAxb0VickliMHlZUVlrVkZLbnVnVnZlcjQvb0dzWGNGdUEwdFFBbC9FdDZmMVhEcGZkbTFUeUs3YVNsOWpvVWlDdkdmdlVzazBmbkNZPSIsIml2UGFyYW1ldGVyU3BlYyI6IkpSdEZ5WEtLZmtrbUs1MDQiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=main)
 [![Code Version](https://img.shields.io/crates/v/btree_graph)](https://img.shields.io/crates/v/btree_graph)
 [![Docs badge]][docs.rs]
 
