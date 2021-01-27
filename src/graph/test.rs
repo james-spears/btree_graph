@@ -194,7 +194,10 @@ mod unit_tests {
         assert_eq!(graph.edges(), exp_edges);
 
         // Remove vertex which does not exist.
-        assert_eq!(graph.remove_vertex(3).unwrap_err(), Error::VertexDoesNotExist);
+        assert_eq!(
+            graph.remove_vertex(3).unwrap_err(),
+            Error::VertexDoesNotExist
+        );
         Ok(())
 
         // Test passed.

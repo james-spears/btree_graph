@@ -123,7 +123,7 @@ where
     E: Ord + Clone,
 {
     type Error = Error;
-    fn remove_edge(&mut self, e: E) -> Result<(), Self::Error> {
+    fn remove_edge(&mut self, e: E) -> Result<(V, V), Self::Error> {
         if let Some(edge) = self.edges.get(&e) {
             let v = edge.0.clone();
             if let Some(vertex) = self.vertices.get(&v) {
@@ -131,8 +131,9 @@ where
                 vertex.remove(&e);
                 self.vertices.insert(v, vertex);
             }
-            self.edges.remove(&e);
-            return Ok(());
+            // We have already checked e exists in the edges so it is
+            // safe to unwrap.
+            return Ok(self.edges.remove(&e).unwrap());
         }
         Err(Error::EdgeDoesNotExist)
     }
@@ -145,7 +146,7 @@ where
     E: Ord + Clone,
 {
     type Error = Error;
-    fn remove_vertex(&mut self, v: V) -> Result<(), Self::Error> {
+    fn remove_vertex(&mut self, v: V) -> Result<BTreeSet<(E, (V, V))>, Self::Error> {
         // When removing an vertex, of course, we should remove
         // all adjacent edges;
         if let Some(edges) = self.vertices.get(&v) {
@@ -154,17 +155,27 @@ where
             }
             // in addition we should be checking for, and removing
             // any edges which point to the vertex pending removal.
-            self.edges
+            let edges_to_remove: BTreeSet<(E, (V, V))> = self.edges
                 .clone()
                 .into_iter()
-                .filter(|e| -> bool { e.1 .1 == v })
-                .try_for_each(|e| self.remove_edge(e.0))?;
-            self.vertices.remove(&v);
-            return Ok(());
+                .filter(|e| -> bool { e.1.1 == v })
+                .collect();
+
+            for edge in edges_to_remove.iter().cloned() {
+                self.remove_edge(edge.0)?;
+            }
+
+            // We have already checked v exists in vertices, so it is safe to unwrap here.
+            self.vertices.remove(&v).unwrap();
+
+            // Return the edges which were removed in case the user needs them (possibly to add
+            // a subset of them back).
+            return Ok(edges_to_remove);
         }
         Err(Error::VertexDoesNotExist)
     }
 }
+
 
 impl<V, E> Adjacent<V> for BTreeGraph<V, E>
 where

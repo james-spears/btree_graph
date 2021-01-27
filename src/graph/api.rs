@@ -129,8 +129,9 @@ where
 ///
 /// assert_eq!(graph.edges().len(), 1);
 ///
-/// graph.remove_edge(10);
-///
+/// let removed_edge: (String, String) = graph.remove_edge(10).unwrap();
+/// assert_eq!(removed_edge.0, String::from("origin"));
+/// assert_eq!(removed_edge.1, String::from("destination"));
 /// assert_eq!(graph.edges().len(), 0);
 ///
 /// // Note: deletion of edges cascade i.e. the edge is also deleted from any incident
@@ -139,7 +140,7 @@ where
 /// ```
 pub trait RemoveEdge<V, E> {
     type Error;
-    fn remove_edge(&mut self, x: E) -> Result<(), Self::Error>;
+    fn remove_edge(&mut self, x: E) -> Result<(V, V), Self::Error>;
 }
 
 /// `RemoveVertex` removes the vertex x, if it is there. If the vertex does not exist,
@@ -157,7 +158,10 @@ pub trait RemoveEdge<V, E> {
 /// graph.add_edge(String::from("origin"), String::from("destination"), 10);
 ///
 ///
-/// graph.remove_vertex(String::from("destination"));
+/// let adjacent_edges_removed = graph.remove_vertex(String::from("destination")).unwrap();
+/// let adjacent_edges_removed_vec: Vec<(usize, (String, String))> = adjacent_edges_removed.into_iter().collect();
+///
+/// assert_eq!(adjacent_edges_removed_vec[0], (10, (String::from("origin"), String::from("destination"))));
 /// assert_eq!(graph.vertices().len(), 1);
 ///
 /// // Note: removing a vertex will also cascade delete any incident edges, which will then
@@ -170,7 +174,7 @@ where
     E: Ord,
 {
     type Error;
-    fn remove_vertex(&mut self, x: V) -> Result<(), Self::Error>;
+    fn remove_vertex(&mut self, x: V) -> Result<BTreeSet<(E, (V, V))>, Self::Error>;
 }
 
 /// `Adjacent` tests whether there is an edge from the vertex x to the vertex y.
