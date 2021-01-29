@@ -25,6 +25,7 @@ serde_yaml = ["try_encoding_from/yaml"]
 fmt = []
 
 [dependencies]
+btree_error = { path = "../btree_error" }
 serde = { version = "1.0", features = ["derive"], default-features = false, optional = true }
 try_encoding_from = { version = "0.1", default-features = false, optional = true }
 

@@ -10,12 +10,12 @@
 [Docs badge]: https://img.shields.io/badge/docs.rs-rustdoc-blue
 [docs.rs]: https://docs.rs/btree_graph/
 
-This library is a minimal implementation of a graph 
+This library is a minimal implementation of a graph
 (abstract data structure) by way of two binary tree maps
 (`BTreeMap`). This implementation is often referred to as
 an adjacency list.
 
-The primary goals of this implementation are to be 
+The primary goals of this implementation are to be
 minimal and idiomatic to the Rust language. The `alloc`
 crate is the only dependency when compiled with default
 features and is not optional. As one might assume, `alloc`
@@ -33,7 +33,7 @@ fn main() {
     graph.add_vertex(String::from("Jane"));
     // Add a relationship.
     graph.add_edge(String::from("Tarzan"), String::from("Jane"), String::from("Loves"));
-    
+
     // Assert relationship now exists.
     assert!(graph.adjacdent(String::from("Tarzan"), String::from("Jane")));
 }

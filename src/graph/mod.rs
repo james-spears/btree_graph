@@ -7,8 +7,10 @@ use core::default::Default;
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 
-use crate::error::Error;
+use crate::Error;
 pub use api::*;
+
+pub type Edge<V, E> = (E, (V, V));
 
 /// `BTreeGraph` is an implementation of a graph (abstract data structure)
 /// which utilizes `BTreeMap` for the edge and vertex adjacency lists.
@@ -146,7 +148,7 @@ where
     E: Ord + Clone,
 {
     type Error = Error;
-    fn remove_vertex(&mut self, v: V) -> Result<BTreeSet<(E, (V, V))>, Self::Error> {
+    fn remove_vertex(&mut self, v: V) -> Result<BTreeSet<Edge<V, E>>, Self::Error> {
         // When removing an vertex, of course, we should remove
         // all adjacent edges;
         if let Some(edges) = self.vertices.get(&v) {

@@ -1,7 +1,7 @@
 #![cfg(test)]
 
 mod unit_tests {
-    use crate::error::Error;
+    use crate::Error;
     use crate::graph::*;
     use alloc::collections::{BTreeMap, BTreeSet};
 

@@ -1,4 +1,5 @@
 use alloc::collections::BTreeSet;
+use crate::Edge;
 
 /// `Vertices` returns the set of the vertices which comprise the graph.
 ///
@@ -174,7 +175,7 @@ where
     E: Ord,
 {
     type Error;
-    fn remove_vertex(&mut self, x: V) -> Result<BTreeSet<(E, (V, V))>, Self::Error>;
+    fn remove_vertex(&mut self, x: V) -> Result<BTreeSet<Edge<V, E>>, Self::Error>;
 }
 
 /// `Adjacent` tests whether there is an edge from the vertex x to the vertex y.
