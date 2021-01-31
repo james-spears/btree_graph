@@ -1,6 +1,6 @@
 # Binary Tree Graph (btree_graph)
 
-[![CodeBuild]][CodeBuild]
+![CodeBuild]
 [![Version badge]][crates.io]
 [![Docs badge]][docs.rs]
 
