@@ -1,10 +1,18 @@
 # Binary Tree Graph (btree_graph)
 
-![CodeBuild]
+## Branch Status
+
+| build                 | test               | main               |
+| :-------------------: | :----------------: | :----------------: |
+| ![CodeBuild(build)]   | ![CodeBuild(test)] | ![CodeBuild(main)] |
+
+![CodeBuild(main)]
 [![Version badge]][crates.io]
 [![Docs badge]][docs.rs]
 
-[CodeBuild]: https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoieHhXM3oweUNEUEhLQmNvaytuRmZWRHV2UVEzMUk0akhyU0NyMi9hblhXcTBiVWp6bjQzNXlLRGJubGcwQUxFOHZNV01HcERNUnNZbm5NSG5yYWJia2pzPSIsIml2UGFyYW1ldGVyU3BlYyI6Iis2T2l2LzVjZGV6Mk1oVWIiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=main
+[CodeBuild(main)]: https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoieHhXM3oweUNEUEhLQmNvaytuRmZWRHV2UVEzMUk0akhyU0NyMi9hblhXcTBiVWp6bjQzNXlLRGJubGcwQUxFOHZNV01HcERNUnNZbm5NSG5yYWJia2pzPSIsIml2UGFyYW1ldGVyU3BlYyI6Iis2T2l2LzVjZGV6Mk1oVWIiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=main
+[CodeBuild(test)]: https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoieHhXM3oweUNEUEhLQmNvaytuRmZWRHV2UVEzMUk0akhyU0NyMi9hblhXcTBiVWp6bjQzNXlLRGJubGcwQUxFOHZNV01HcERNUnNZbm5NSG5yYWJia2pzPSIsIml2UGFyYW1ldGVyU3BlYyI6Iis2T2l2LzVjZGV6Mk1oVWIiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=main
+[CodeBuild(build)]: https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoieHhXM3oweUNEUEhLQmNvaytuRmZWRHV2UVEzMUk0akhyU0NyMi9hblhXcTBiVWp6bjQzNXlLRGJubGcwQUxFOHZNV01HcERNUnNZbm5NSG5yYWJia2pzPSIsIml2UGFyYW1ldGVyU3BlYyI6Iis2T2l2LzVjZGV6Mk1oVWIiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=main
 [Version badge]: https://img.shields.io/crates/v/btree_graph
 [crates.io]: https://crates.io/crates/btree_graph
 [Docs badge]: https://img.shields.io/badge/docs.rs-rustdoc-blue
